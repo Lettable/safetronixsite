@@ -3,13 +3,9 @@ import { useState, useEffect } from "react";
 import Loading from "@/components/section/Loading";
 import Header from "@/components/section/Header";
 import { Fingerprint } from "@/components/animate-ui/icons/fingerprint";
-import HeroSection from "@/components/section/Hero";
-import About from "@/components/section/About";
-import ReportFormCard from "@/components/section/ReportForm";
-import ContactCard from "@/components/section/Contact";
 import Footer from "@/components/section/Footer";
-import ScrollVelocity from "@/components/layout/ScrollVelocity";
 import Aurora from "@/components/layout/Aurora";
+import DiscoveryDetailPage from "@/components/section/Discovery";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -51,28 +47,7 @@ export default function Home() {
         }
         links={navLinks}
       />
-      <HeroSection />
-      <About />
-
-      <section className="px-4 py-12 bg-transparent mt-[7rem]">
-        <div className="flex justify-center">
-          <ScrollVelocity
-            texts={["Real-Time Harm Detection   Rapid Content Escalation   Zero Tolerance Reporting", "24/7 Threat Monitoring   AI-Powered Abuse Defense   Built for Enforcement Agencies"]}
-            velocity={50}
-            className="text-white"
-          />
-        </div>
-      </section>
-      <section className="px-4 py-12 bg-transparent mt-[7rem]">
-        <div className="flex flex-col lg:flex-row justify-center items-start gap-8 w-full max-w-7xl mx-auto">
-          <div className="flex-1 min-w-[300px]">
-            <ReportFormCard />
-          </div>
-          <div className="flex-1 min-w-[300px]">
-            <ContactCard />
-          </div>
-        </div>
-      </section>
+      <DiscoveryDetailPage />
       <Footer />
     </div>
   );
