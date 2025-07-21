@@ -2,19 +2,16 @@ import { type NextRequest, NextResponse } from "next/server"
 import { connectToDatabase } from "@/lib/mongodb"
 import { ObjectId } from "mongodb"
 
-export async function PUT(request: NextRequest) {
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     const { db } = await connectToDatabase()
 
-    const url = new URL(request.url)
-    const id = url.pathname.split("/").at(-2)
-
-    if (!id || !ObjectId.isValid(id)) {
+    if (!ObjectId.isValid(params.id)) {
       return NextResponse.json({ success: false, error: "Invalid discovery ID" }, { status: 400 })
     }
 
     const result = await db.collection("discoveries").updateOne(
-      { _id: new ObjectId(id) },
+      { _id: new ObjectId(params.id) },
       {
         $set: {
           status: "RESOLVED",
@@ -22,7 +19,7 @@ export async function PUT(request: NextRequest) {
           resolvedAt: new Date(),
           updatedAt: new Date(),
         },
-      }
+      },
     )
 
     if (result.matchedCount === 0) {
