@@ -2,12 +2,14 @@ import { type NextRequest, NextResponse } from "next/server"
 import { connectToDatabase } from "@/lib/mongodb"
 import { ObjectId } from "mongodb"
 
-export async function PUT(request: NextRequest, context: { params: { id: string } }) {
+export async function PUT(request: NextRequest) {
   try {
-    const { id } = context.params
     const { db } = await connectToDatabase()
 
-    if (!ObjectId.isValid(id)) {
+    const url = new URL(request.url)
+    const id = url.pathname.split("/").at(-2)
+
+    if (!id || !ObjectId.isValid(id)) {
       return NextResponse.json({ success: false, error: "Invalid discovery ID" }, { status: 400 })
     }
 
@@ -20,7 +22,7 @@ export async function PUT(request: NextRequest, context: { params: { id: string 
           resolvedAt: new Date(),
           updatedAt: new Date(),
         },
-      },
+      }
     )
 
     if (result.matchedCount === 0) {
