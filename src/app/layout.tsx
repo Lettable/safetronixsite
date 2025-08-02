@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Safetronix — Fighting CSAM, DMCA Violations & Digital Threats",
+  title: "NoCSAM — A Coalition Against Child Sexual Abuse Material",
   description:
-    "Safetronix is your frontline defense against child sexual abuse material (CSAM), DMCA violations, and all forms of digital threats.",
+    "NoCSAM is an independent digital taskforce focused on reporting CSAM online. Our mission is to assist global agencies and NGOs by providing automated reports and threat intelligence.",
 };
 
 export default function RootLayout({

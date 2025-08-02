@@ -2,13 +2,16 @@
 import { useState, useEffect } from "react";
 import Loading from "@/components/section/Loading";
 import Header from "@/components/section/Header";
-import { Fingerprint } from "@/components/animate-ui/icons/fingerprint";
+import { Shield } from "lucide-react";
 import HeroSection from "@/components/section/Hero";
-import About from "@/components/section/About";
-import ReportFormCard from "@/components/section/ReportForm";
-import ContactCard from "@/components/section/Contact";
+import FocusAreas from "@/components/section/FocusAreas";
+import ImpactSection from "@/components/section/Impact";
+import ReportSection from "@/components/section/ReportSection";
+import FAQ from "@/components/section/FAQ";
+import AboutUs from "@/components/section/AboutUs";
+import Testimonials from "@/components/section/Testimonials";
+import ContactForm from "@/components/section/ContactForm";
 import Footer from "@/components/section/Footer";
-import ScrollVelocity from "@/components/layout/ScrollVelocity";
 import Aurora from "@/components/layout/Aurora";
 
 export default function Home() {
@@ -20,59 +23,46 @@ export default function Home() {
   }, []);
 
   const navLinks = [
-    { name: "Focus Area", href: "#focus", type: "hash" },
-    { name: "Discoveries", href: "/discoveries", type: "href" },
-    { name: "Report", href: "#report", type: "hash" },
+    { name: "Focus Areas", href: "#focus", type: "hash" },
+    { name: "Impact", href: "#impact", type: "hash" },
+    { name: "About", href: "#about", type: "hash" },
+    { name: "Track Report", href: "/track-report", type: "href" },
     { name: "Contact", href: "#contact", type: "hash" },
   ];
 
   if (loading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="fixed inset-0 -z-50 bg-black pointer-events-none" aria-hidden="true">
         <Aurora
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.5}
+          colorStops={["#1e3a8a", "#3b82f6", "#1e40af"]}
+          blend={0.3}
+          amplitude={0.8}
+          speed={0.3}
         />
       </div>
 
       <Header
         logo={
           <div className="flex items-center gap-2 text-white font-semibold">
-            <Fingerprint animateOnHover /> Safetronix
+            <Shield className="w-6 h-6" />
+            NoCSAM
           </div>
         }
         links={navLinks}
       />
+      
       <HeroSection />
-      <About />
-
-      <section className="px-4 py-12 bg-transparent mt-[7rem]">
-        <div className="flex justify-center">
-          <ScrollVelocity
-            texts={["Real-Time Harm Detection   Rapid Content Escalation   Zero Tolerance Reporting", "24/7 Threat Monitoring   AI-Powered Abuse Defense   Built for Enforcement Agencies"]}
-            velocity={50}
-            className="text-white"
-          />
-        </div>
-      </section>
-      <section className="px-4 py-12 bg-transparent mt-[7rem]">
-        <div className="flex flex-col lg:flex-row justify-center items-start gap-8 w-full max-w-7xl mx-auto">
-          <div className="flex-1 min-w-[300px]">
-            <ReportFormCard />
-          </div>
-          <div className="flex-1 min-w-[300px]">
-            <ContactCard />
-          </div>
-        </div>
-      </section>
+      <FocusAreas />
+      <ImpactSection />
+      <ReportSection />
+      <FAQ />
+      <AboutUs />
+      <Testimonials />
+      <ContactForm />
       <Footer />
     </div>
   );
